@@ -96,29 +96,79 @@
         // 1. Define your questions here. 
         // IMPORTANT: Use double backslashes (\\) for LaTeX in JavaScript strings!
         // Use $...$ for inline math and $$...$$ for block math.
-        const quizData = [
-            {
-                question: "নিচের সমীকরণটির মান কত? $\\int_{0}^{1} x^2 \\, dx$",
-                options: ["$\\frac{1}{2}$", "$\\frac{1}{3}$", "$1$", "$0$"],
-                correctAnswerIndex: 1,
-                explanation: "ইন্টিগ্রেশনের নিয়ম অনুযায়ী $\\int x^n dx = \\frac{x^{n+1}}{n+1}$। তাই $\\left[\\frac{x^3}{3}\\right]_0^1 = \\frac{1}{3} - 0 = \\frac{1}{3}$।",
-                graphUrl: "" // Leave empty if no graph, or put "image.png"
-            },
-            {
-                question: "যদি $f(x) = x^2 - 4x + 4$ হয়, তবে $x = 2$ বিন্দুতে ফাংশনটির মান কত?",
-                options: ["$4$", "$2$", "$0$", "$-4$"],
-                correctAnswerIndex: 2,
-                explanation: "$f(2) = (2)^2 - 4(2) + 4 = 4 - 8 + 4 = 0$",
-                graphUrl: "" 
-            },
-            {
-                question: "নিচের গ্রাফটি কোন সমীকরণের? (ধরে নিন এটি একটি পরাবৃত্ত / Parabola)",
-                options: ["$y = x^2$", "$y = x^3$", "$y = \\sin(x)$", "$y = |x|$"],
-                correctAnswerIndex: 0,
-                explanation: "$y = x^2$ একটি পরাবৃত্ত বা Parabola তৈরি করে যার শীর্ষবিন্দু মূলবিন্দুতে (Origin) অবস্থিত।",
-                graphUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Polynomialdeg2.svg/300px-Polynomialdeg2.svg.png" // Example image
-            }
-        ];
+const quizData = [
+    {
+        question: "$n$ ঘাতের একটি বাস্তব সহগ বিশিষ্ট বহুপদী সমীকরণে কতগুলো মূল থাকে?",
+        options: ["$>n$ সংখ্যক", "$<n$ সংখ্যক", "$n$ সংখ্যক", "$1$ টি"],
+        correctAnswerIndex: 2,
+        explanation: "একটি $n$ ঘাত সমীকরণের ঠিক $n$ সংখ্যক মূল থাকে (Fundamental Theorem of Algebra অনুযায়ী)।",
+        graphUrl: ""
+    },
+    {
+        question: "বাস্তব সহগ বিশিষ্ট $n$ ঘাতের একটি বহুপদী সমীকরণে অবাস্তব বা কাল্পনিক মূলগুলো — থাকে?",
+        options: ["বিচ্ছিন্ন", "একত্রে", "যুগলে", "ইউনিক"],
+        correctAnswerIndex: 2,
+        explanation: "বাস্তব সহগবিশিষ্ট বহুপদী সমীকরণের কাল্পনিক মূলগুলো অনুবন্ধী যুগলে (Conjugate Pairs) থাকে।",
+        graphUrl: ""
+    },
+    {
+        question: "$4x^4 + x^2 + 3x - 1 = 0$ এর কয়টি যোগবোধক বাস্তব মূল থাকতে পারে?",
+        options: ["$4$ টি", "$1$ টি", "$3$ টি", "$5$ টি"],
+        correctAnswerIndex: 1,
+        explanation: "এখানে $f(x) = 4x^4 + x^2 + 3x - 1$ রাশিতে $1$ টি চিহ্নের পরিবর্তন হয়েছে ( + থেকে - ), তাই ডেসকার্টসের নিয়ম অনুযায়ী $1$ টি যোগবোধক বাস্তব মূল থাকতে পারে।",
+        graphUrl: ""
+    },
+    {
+        question: "$x^4 + 2x^2 + 4 = 0$ সমীকরণের কতটি বাস্তব মূল বিদ্যমান?",
+        options: ["$1$ টি", "$2$ টি", "$3$ টি", "বাস্তব মূল নাই"],
+        correctAnswerIndex: 3,
+        explanation: "$f(x) = x^4 + 2x^2 + 4$ এ কোন চিহ্নের পরিবর্তন হয়নি এবং $f(-x) = x^4 + 2x^2 + 4$ এ কোন চিহ্নের পরিবর্তন হয়নি। সুতরাং প্রদত্ত সমীকরণের কোন বাস্তব মূল নাই।",
+        graphUrl: ""
+    },
+    {
+        question: "যদি $f(x) = x^n f\\left(\\frac{1}{x}\\right)$ হয়, তবে $f(x) = 0$ ইহাকে কোন শ্রেণির বিপরীতমুখী সমীকরণ বলে?",
+        options: ["২য় শ্রেণির", "১ম শ্রেণির", "৩য় শ্রেণির", "None"],
+        correctAnswerIndex: 1,
+        explanation: "যদি সহগগুলো শুরু এবং শেষ থেকে একই হয় এবং চিহ্নের পরিবর্তন না হয়, তবে তাকে ১ম শ্রেণির বিপরীতমুখী সমীকরণ বলে।",
+        graphUrl: ""
+    },
+    {
+        question: "যদি $f(x) = -x^n f\\left(\\frac{1}{x}\\right)$ হয় তবে ইহাকে কোন শ্রেণির বিপরীতমুখী সমীকরণ বলা হয়?",
+        options: ["১ম", "২য়", "৩য়", "৪র্থ"],
+        correctAnswerIndex: 1,
+        explanation: "যদি সহগগুলো বিপরীত চিহ্নযুক্ত হয়, তবে তাকে ২য় শ্রেণির বিপরীতমুখী সমীকরণ বলে।",
+        graphUrl: ""
+    },
+    {
+        question: "$7x^5 - 6x^4 + 4x^3 - 4x^2 + 6x - 7 = 0$ কে কোন শ্রেণির বিপরীতমুখী সমীকরণ বলা হয়?",
+        options: ["১ম", "২য়", "৩য়", "৪র্থ"],
+        correctAnswerIndex: 1,
+        explanation: "সর্বোচ্চ ঘাতের সহগ ($7$) এবং ধ্রুবক পদ ($-7$) বিপরীত চিহ্ন বিশিষ্ট হওয়ায় এটি ২য় শ্রেণির বিপরীতমুখী সমীকরণ।",
+        graphUrl: ""
+    },
+    {
+        question: "$2x^4 - 5x^3 + 4x^2 - 5x + 2 = 0$ কোন শ্রেণির বিপরীতমুখী সমীকরণ?",
+        options: ["১ম", "২য়", "৩য়", "৪র্থ"],
+        correctAnswerIndex: 0,
+        explanation: "এখানে $f(x) = x^4 f\\left(\\frac{1}{x}\\right)$ শর্তটি পালিত হয়। ১ম শ্রেণির বিপরীতমুখী সমীকরণে সাধারণত সর্বোচ্চ ঘাতের সহগ এবং ধ্রুবক পদ একই হয়।",
+        graphUrl: ""
+    },
+    {
+        question: "$x^3 - 6x^2 + 11x + 6 = 0$ এর মূলত্রয় $\\alpha, \\beta, \\gamma$ হলে $\\alpha^2 + \\beta^2 + \\gamma^2 = ?$",
+        options: ["$12$", "$10$", "$14$", "$15$"],
+        correctAnswerIndex: 2,
+        explanation: "এখানে $S_1 = 6$ এবং $P_2 = 11$। আমরা জানি, $\\alpha^2 + \\beta^2 + \\gamma^2 = (\\alpha + \\beta + \\gamma)^2 - 2(\\alpha\\beta + \\beta\\gamma + \\gamma\\alpha) = 6^2 - 2(11) = 36 - 22 = 14$।",
+        graphUrl: ""
+    },
+    {
+        question: "$3x^3 - 2x^2 + 5x + 10 = 0$ এর মূলত্রয় $\\alpha, \\beta, \\gamma$ হলে, $\\alpha\\beta\\gamma = ?$",
+        options: ["$\\frac{10}{3}$", "$2$", "$\\frac{9}{4}$", "$-\\frac{10}{3}$"],
+        correctAnswerIndex: 3,
+        explanation: "$\\alpha\\beta\\gamma = (-1)^3 \\cdot \\frac{\\text{ধ্রুবক পদ}}{\\text{সর্বোচ্চ ঘাতের সহগ}} = -\\frac{10}{3}$।",
+        graphUrl: ""
+    }
+];
+        
 
         const marksPerCorrect = 1;
         const penaltyPerWrong = 0.25; // 0.25 negative marking
